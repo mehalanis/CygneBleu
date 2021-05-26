@@ -67,9 +67,15 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, $client)
     {
-        //
+        $client=Client::find(intval($client));
+        $input = $request->all();
+        $input["is_whatsapp"] = ($request->is_whatsapp)? "1":"-1";
+        $input["is_viber"] = ($request->is_viber)? "1":"-1";
+        $input["is_imo"] = ($request->is_imo)? "1":"-1";
+        $client->update($input);
+        return redirect()->back();        
     }
 
     /**

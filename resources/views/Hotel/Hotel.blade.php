@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text text-center">
-                        <h3>Voyage Organisé</h3>
+                        <h3>Hotel</h3>
                         <p></p>
                     </div>
                 </div>
@@ -84,13 +84,14 @@
 @section('script')
 <script src="{{asset("js")}}/ion.rangeSlider.min.js"></script>
 <script src="{{asset("js")}}/Ville.js"></script>
+
 <script>
     $("#amount").ionRangeSlider({
         type: "double",
         min: 1000,
-        max: 140000,
+        max: 40000,
         from: 1000,
-        to: 140000,
+        to: 40000,
         step:1000,
         prefix :" DZ ",
         grid: true,
@@ -118,7 +119,7 @@
         var from="&from="+$('#from').val();
         var to="&to="+$('#to').val();
         $.ajax({
-                url: "{{ route('VoyageOrganiseController.GetVoyageOrganise') }}?page=" + window.page+pays+ville+from+to,
+                url: "{{ route('HotelController.GetHotel') }}?page=" + window.page+pays+ville+from+to,
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {

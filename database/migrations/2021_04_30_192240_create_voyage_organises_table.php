@@ -17,7 +17,7 @@ class CreateVoyageOrganisesTable extends Migration
             $table->id();
             $table->string("nom");
             $table->integer("Nb_jour");
-            $table->text("description");
+            $table->longText("description");
             $table->string("photo");
             $table->double("prixAdulte");
             $table->double("prixAdolescente");

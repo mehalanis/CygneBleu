@@ -6,6 +6,9 @@ use App\Http\Controllers\VoyageOrganiseController;
 use App\Http\Controllers\VoyageOrganiseReservationController;
 use App\Http\Controllers\PaysController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HotelController;
+use App\Http\Controllers\HotelReservationController;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +29,12 @@ Route::get('/VoyageOrganise',[VoyageOrganiseController::class,"VoyageOrganise"])
 Route::get('/VoyageOrganise/GetVoyageOrganise',[VoyageOrganiseController::class,"GetVoyageOrganise"])->name("VoyageOrganiseController.GetVoyageOrganise");
 Route::get('/VoyageOrganise/{voyageOrganise}',[VoyageOrganiseController::class,"ShowDetail"])->name("VoyageOrganiseController.ShowDetail");
 Route::post('/VoyageOrganise/New',[VoyageOrganiseReservationController::class,"store"])->name("VoyageOrganiseReservationController.store");
+/* * */
+Route::get('/Hotel',[HotelController::class,"Hotel"])->name("HotelController.Hotel");
+Route::get('/Hotel/GetHotel',[HotelController::class,"GetHotel"])->name("HotelController.GetHotel");
+Route::get('/Hotel/{Hotel}',[HotelController::class,"show"])->name("HotelController.show");
+Route::post('/HotelReservation/New',[HotelReservationController::class,"store"])->name("HotelReservationController.store");
+
 
 /*  * */
 Route::get("/Pays/GetVillesJSON/",[PaysController::class,"GetVillesJSON"])->name("PaysController.GetVillesJsonURL");
@@ -35,10 +44,16 @@ Route::prefix('admin')->group(function () {
     Route::resources([
         "GeneralSetting" =>GeneralSettingController::class,
         "VoyageOrganise" =>VoyageOrganiseController::class,
-        "VoyageOrganiseReservation"=>VoyageOrganiseReservationController::class
+        "VoyageOrganiseReservation"=>VoyageOrganiseReservationController::class,
+        "Hotel"=>HotelController::class,
+        "HotelReservation"=>HotelReservationController::class,
+        "Client"=>ClientController::class
     ]);
     Route::get("/VoyageOrganise/list/datatables",[VoyageOrganiseController::class,"datatables"])->name("VoyageOrganiseController.datatables");
     Route::get("/VoyageOrganiseReservationController/list/datatables",[VoyageOrganiseReservationController::class,"datatables"])->name("VoyageOrganiseReservationController.datatables");
+    Route::get("/Hotel/list/datatables",[HotelController::class,"datatables"])->name("Hotel.datatables");
+    Route::get("/HotelReservation/list/datatables",[HotelReservationController::class,"datatables"])->name("HotelReservationController.datatables");
+
 
     Route::get('/index', function () {
         return view('Admin.index');

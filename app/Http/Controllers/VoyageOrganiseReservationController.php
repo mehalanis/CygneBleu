@@ -15,11 +15,11 @@ class VoyageOrganiseReservationController extends Controller
      */
     public function index()
     {
-        return view("admin.Reservation.VoyageOrganise");
+        return view("Admin.Reservation.VoyageOrganise");
     }
     public function datatables()
     {   
-        $Client=Client::all();
+        $Client=Client::select("clients.*","voyage_organise_reservations.id as voyage_organise_reservations_id")->join("voyage_organise_reservations","clients.id","=","voyage_organise_reservations.client_id")->get();
         return Datatables::of($Client)->editColumn('nom', function(Client $data) {
             return $data->nom." ".$data->prenom;
         })
@@ -29,7 +29,7 @@ class VoyageOrganiseReservationController extends Controller
         ->addColumn('Ville', function(Client $data) {
             return $data->VoyageOrganiseReservation->VoyageOrganiseDate->VoyageOrganise->ville->nom;
          })->addColumn('action', function(Client $data) {
-            $btnView='<a href="'.route("VoyageOrganiseReservation.edit",['VoyageOrganiseReservation'=>$data->id]).'" class="btn btn-block btn-primary">View</button>';
+            $btnView='<a href="'.route("VoyageOrganiseReservation.edit",['VoyageOrganiseReservation'=>$data->voyage_organise_reservations_id]).'" class="btn btn-block btn-primary">View</button>';
             return "<div class='action-list'>".$btnView."</div>";
             
         })->rawColumns(['action'])->toJson(); 
@@ -98,9 +98,9 @@ class VoyageOrganiseReservationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($voyageOrganiseReservation)
-    {
-        $voyageOrganiseReservation=VoyageOrganiseReservation::find($voyageOrganiseReservation);
-        return view("Admin.Reservation.Edit",compact("voyageOrganiseReservation"));
+    {       
+        $voyageOrganiseReservation=VoyageOrganiseReservation::find(intval($voyageOrganiseReservation));
+        return view("Admin.Reservation.VoyageOrganiseEdit",compact("voyageOrganiseReservation"));
     }
 
     /**
@@ -110,9 +110,12 @@ class VoyageOrganiseReservationController extends Controller
      * @param  \App\Models\VoyageOrganiseReservation  $voyageOrganiseReservation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, VoyageOrganiseReservation $voyageOrganiseReservation)
+    public function update(Request $request, $voyageOrganiseReservation)
     {
-        //
+        $voyageOrganiseReservation = VoyageOrganiseReservation::findOrFail($voyageOrganiseReservation);
+        $input = $request->all();
+        $voyageOrganiseReservation->update($input);
+        return redirect()->back();
     }
 
     /**

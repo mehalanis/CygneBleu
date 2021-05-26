@@ -13,6 +13,8 @@
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
+    <link rel="stylesheet" href="{{asset("Admin")}}/plugins/fontawesome-free/css/all.min.css">
+
     <link rel="stylesheet" href="{{asset("css")}}/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset("css")}}/owl.carousel.min.css">
     <link rel="stylesheet" href="{{asset("css")}}/magnific-popup.css">
@@ -51,6 +53,7 @@
                                         <ul id="navigation">
                                             <li><a class="active" href="{{route("index")}}">home</a></li>
                                             <li><a class="" href="{{route("VoyageOrganiseController.VoyageOrganise")}}">Voyage organisé</a></li>
+                                            <li><a class="" href="{{route("HotelController.Hotel")}}">Hotel</a></li>
                                             <li><a href="{{route("Contact")}}">Contact</a></li>
                                             <li><a href="{{route("admin.index")}}">Admin</a></li>
                                         </ul>

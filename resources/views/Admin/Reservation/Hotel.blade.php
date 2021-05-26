@@ -22,17 +22,13 @@ Voyage Organise
                 </div>
                 <!-- /.card-header -->
                     <div class="card-body">
-                        <div style="text-align: right;margin-bottom:8px;">
-                          <a href="{{route("VoyageOrganise.create")}}" class="btn btn-success"  > Ajouter </a>
-                        </div>
                         <table id="table_voyage" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>Nom</th>
-                                    <th>Nb jour</th>
-                                    <th>Pays</th>
-                                    <th>ville</th>
-                                    <th>operation</th>
+                                    <th>Nom et Prenom</th>
+                                    <th>NomHotel</th>
+                                    <th>Ville</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,11 +53,10 @@ Voyage Organise
 			   ordering: false,
                processing: true,
                serverSide: true,
-               ajax: '{{ route('VoyageOrganiseController.datatables') }}',
+               ajax: '{{ route('HotelReservationController.datatables') }}',
                columns: [
                         { data: 'nom', name: 'nom' },
-                        { data: 'Nb_jour', name: 'Nb_jour' },
-                        { data: 'Pays', name: 'Pays' },
+                        { data: 'NomHotel', name: 'NomHotel' },
                         { data: 'Ville', name: 'Ville' },
                         { data: 'action', searchable: false, orderable: false },
                      ],

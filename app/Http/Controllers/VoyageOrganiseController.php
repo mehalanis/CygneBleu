@@ -74,8 +74,8 @@ class VoyageOrganiseController extends Controller
             $name="photo".time().Str::random(8).'.'. $files->getClientOriginalExtension();
             $path=$files->storeAs('VoyageOrganise/'.$data->id, $name, 'public');
             $img = Image::make($files)->resize(350, 240)->encode('jpg',80);
-            Storage::disk('public')->put( 'VoyageOrganise/'.$voyageOrganise->id."/".$name, $img);
-            $data->photo='/storage/'.'VoyageOrganise/'.$voyageOrganise->id."/".$name;
+            Storage::disk('public')->put( 'VoyageOrganise/'.$data->id."/".$name, $img);
+            $data->photo='/storage/'.'VoyageOrganise/'.$data->id."/".$name;
             $data->update();
         }
         if ($files = $request->file("images")){

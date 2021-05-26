@@ -16,7 +16,7 @@ class VoyageOrganiseReservation extends Model
     public function Client(){
         return $this->belongsTo(Client::class);
     }
-    public function Total(){
+    public function Somme(){
         return $this->nb_Adulte*$this->VoyageOrganiseDate->VoyageOrganise->prixAdulte
         +$this->nb_Adolescente*$this->VoyageOrganiseDate->VoyageOrganise->prixAdolescente
         +$this->nb_Enfant*$this->VoyageOrganiseDate->VoyageOrganise->prixEnfant;

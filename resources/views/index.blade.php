@@ -2,8 +2,13 @@
 @section('head')
  <style>
      .popular_places_area{
-        padding-top: 78px;
+        padding-top: 40px;
      }
+     @media (max-width: 767px) {
+        .where_togo_area .form_area h3 {
+            margin-bottom: 15px;
+        }
+    }
     </style>   
 @endsection
 @section('content')
@@ -209,12 +214,12 @@
     </div>
     <!-- newletter_area_end  -->
 @endif
-    <div class="popular_places_area">
+    <div class="popular_places_area" style="padding-bottom:50px">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="section_title text-center mb_70">
-                        <h3>Popular Places</h3>
+                        <h3>Voyage Organise</h3>
                         <p>Suffered alteration in some form, by injected humour or good day randomised booth anim 8-bit hella wolf moon beard words.</p>
                     </div>
                 </div>
@@ -256,6 +261,74 @@
                 <div class="col-lg-12">
                     <div class="more_place_btn text-center">
                         <a class="boxed-btn4" href="{{route("VoyageOrganiseController.VoyageOrganise")}}">More Places</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="video_area video_bg overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="video_wrap text-center">
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popular_places_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section_title text-center mb_70">
+                        <h3>Hotel</h3>
+                        <p>Suffered alteration in some form, by injected humour or good day randomised booth anim 8-bit hella wolf moon beard words.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @foreach ($Hotel as  $item)
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_place">
+                        <div class="thumb">
+                            <img src="{{asset($item->photo)}}" alt="">
+                            <a href="{{route('HotelController.show',['Hotel'=>$item->id])}}" class="prise">
+                                à partir de <br>
+                                {{number_format($item->prix,0," .",",")}}  DZ
+                            </a>
+                        </div>
+                        <div class="place_info">
+                            <div class="rating_days d-flex">
+                                <a href="{{route('HotelController.show',['Hotel'=>$item->id])}}" style="margin-right: 12px;">
+                                    <h3>{{$item->nom}}</h3>
+                                </a>
+                                <span class="d-flex justify-content-center align-items-center">
+                                    @for($i=0;$i<$item->etoile;$i++)
+                                        <i class="fa fa-star"></i> 
+                                     @endfor
+                                </span>
+                            </div>
+                            <div class="rating_days d-flex justify-content-between">
+                                <p>{{$item->ville->nom}} , {{$item->ville->pays->nom}}</p>
+                                <div class="d-flex justify-content-center align-items-center listHotel">
+                                    @foreach ($item->Options()->get() as $item)
+                                        <i class="{{$item->code}}"></i>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
+
+
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="more_place_btn text-center">
+                        <a class="boxed-btn4" href="{{route("HotelController.Hotel")}}">More Hotel</a>
                     </div>
                 </div>
             </div>

@@ -201,36 +201,30 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{route('VoyageOrganiseReservation.index')}}" class="nav-link">
+                    <a href="{{route('HotelReservation.index')}}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Hotel</p>
                     </a>
                   </li>
                 </ul>
               </li>
-               <li class="nav-item">
-                <a href="#" class="nav-link">
+               
+              <li class="nav-item">
+                <a href="{{route('VoyageOrganise.index')}}" class="nav-link">
                   <i class="nav-icon fas fa-map-marked-alt"></i>
                   <p>
                     Voyage Organise
-                    <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{route('VoyageOrganise.index')}}" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Voyage</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{route('VoyageOrganise.create')}}" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Creer</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
+              </li> 
+              <li class="nav-item">
+                <a href="{{route("Hotel.index")}}" class="nav-link">
+                  <i class="nav-icon fas fa-hotel"></i>
+                  <p>
+                    Hotel
+                  </p>
+                </a>
+              </li> 
           <li class="nav-item">
             <a href="{{route("GeneralSetting.index")}}" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>

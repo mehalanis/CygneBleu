@@ -11,11 +11,24 @@
             margin-top:1px;
         }
     </style>
+      <link rel="stylesheet" href="{{asset("Admin")}}/plugins/daterangepicker/daterangepicker.css">
+
 @endsection
 @section('content')
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- اعلان التهنئة -->
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-1923016436575579"
+data-ad-slot="2596275303"
+data-ad-format="auto"
+data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 <div class="slider_area">
     <div class="slider_active owl-carousel">
-        @foreach ($voyageOrganise->getAllphotos() as $item)
+        @foreach ($hotel->getAllphotos() as $item)
         <div class="single_slider  d-flex align-items-center overlay" style="background-image: url({{$item->photo}})">
             <div class="container">
                 <div class="row align-items-center">
@@ -29,31 +42,57 @@
         @endforeach
     </div>
 </div>
-
+<div class="where_togo_area" style="padding: 24px 0;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4 col-12">
+                <div class="form_area row" style="margin-left: 0.5px;">
+                    <h3 >
+                        <span  class="d-flex justify-content-center align-items-center" style="font-size: 24px;">
+                            @for($i=0;$i<$hotel->etoile;$i++)
+                                <i class="fa fa-star" style="color:#FDAE5C"></i> 
+                            @endfor
+                        </span>
+                        {{$hotel->nom}}
+                    </h3> 
+                </div>
+            </div>
+            <div class="col-lg-2 col-12">
+                
+            </div>
+            <div class="col-lg-2 col-12">
+                <div class="form_area row" style="padding: 8px;">
+                    <span style="margin-right: 8px" class="d-flex justify-content-center align-items-center">
+                        <i class="fa fa-phone"  style="color:#fff"></i>
+                    </span>
+                    <h4>{{$hotel->telephone}}</h4>
+                </div>
+            </div>
+            <div class="col-lg-4 col-12">
+                <div class="form_area row" style="padding: 8px;">
+                    <span style="margin-right: 8px" class="d-flex justify-content-center align-items-center">
+                        <i class="fa fa-map-marker"  style="color:#fff"></i>
+                    </span>
+                    <h4>{{$hotel->adresse}} , {{$hotel->ville->nom}} , {{$hotel->ville->pays->nom}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="destination_details_info">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-9">
                 <div class="destination_info">
-                    {!!$voyageOrganise->description!!}
+                    {!!$hotel->description!!}
                 </div>
                 <div class="bordered_1px"></div>
                 <div class="contact_join">
                     <h3>Contact for join</h3>
-                    <form action="{{route("VoyageOrganiseReservationController.store")}}" method="POST">
+                    <form action="{{route("HotelReservationController.store")}}" method="POST">
                         @csrf
+                        <input type="hidden" name="hotel_id" value="{{$hotel->id}}">
                         <div class="row">
-                            <div class="col-lg-12 col-md-12">
-                                <div class="single_input">
-                                    <select name="voyage_organise_date_id" id="" >
-                                        @foreach ($voyageOrganise->VoyageOrganiseDate as $item)
-                                         <option value="{{$item->id}}">
-                                            Du {{$item->depart->format('d/m/Y')}} au {{$item->retour->format('d/m/Y')}}
-                                         </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="single_input">
                                     <input type="text" name="nom" placeholder="Votre Nom *" required>
@@ -110,6 +149,22 @@
                             <div class="col-lg-12">
                                 <div class="single_input">
                                     <input type="text" name="email" placeholder="Votre Adresse email">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="single_input">
+                                    <select name="nb_chambre" id="">
+                                        <option value="1">1 Chambre</option>
+                                        <option value="2">2 Chambre</option>
+                                        <option value="3">3 Chambre</option>
+                                        <option value="4">4 Chambre</option>
+                                        <option value="5">5 Chambre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="single_input">
+                                    <input type="text" name="reservation" name="reservation" id="reservation">
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -303,4 +358,15 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script src="{{asset("Admin")}}/plugins/moment/moment.min.js"></script>
+<script src="{{asset("Admin")}}/plugins/daterangepicker/daterangepicker.js"></script>
+<script>
+    $('#reservation').daterangepicker({
+        locale: {
+            format: 'DD/MM/YYYY'
+         }
+    })
+</script>
 @endsection

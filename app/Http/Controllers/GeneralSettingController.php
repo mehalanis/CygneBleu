@@ -17,11 +17,12 @@ class GeneralSettingController extends Controller
         $GeneralSetting=GeneralSetting::find(1);
         if(!$GeneralSetting){
             $GeneralSetting=GeneralSetting::create(
-                ["Telephone_1"=>"",
-                "Telephone_2"=>"",
-                "Fix"=>"",
-                "Email"=>"",
-                "Adresse"=>""]
+                ["Telephone_1"=>"0550 053 574",
+                "Telephone_2"=>"0550 053 514",
+                "Fix"=>"023 834 265",
+                "Email"=>"cygnebleu.bahri@gmail.com",
+                "Adresse"=>"coopérative familiale n°95 brise marine, Bordj El Bahri 16046 Bordj El Bahri, Algérie",
+                "facebook"=>"https://www.facebook.com/cygnebleuavt"]
             );
         }
         return view("Admin.GeneralSettings",compact("GeneralSetting"));

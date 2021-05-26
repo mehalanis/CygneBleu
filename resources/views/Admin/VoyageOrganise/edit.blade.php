@@ -222,7 +222,9 @@ Voyage Organise
     $(function () {
       // Summernote
       $('#description').summernote()
-      $('.input-images').imageUploader({
+      $('.input-images').imageUploader(
+        @if($voyageOrganise->getAllphotos()->count()>0) 
+        {
           "preloaded":[
             @foreach ($voyageOrganise->getAllphotos() as $item)
               {
@@ -231,7 +233,8 @@ Voyage Organise
               },
               @endforeach
           ]
-      });
+      }
+      @endif);
     })
     SelectVilles("{{$voyageOrganise->ville->pays->id}}");
     function SelectVilles(pays_id){

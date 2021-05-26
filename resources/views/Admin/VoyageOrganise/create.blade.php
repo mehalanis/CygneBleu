@@ -208,7 +208,7 @@ Voyage Organise
       $('#description').summernote()
       $('.input-images').imageUploader();
     })
-    SelectVilles("1");
+    SelectVilles("{{$pays[0]->id}}");
     function SelectVilles(pays_id){
         var url="{{route('PaysController.GetVillesJsonURL')}}/"+pays_id
         var request = $.ajax({
