@@ -73,7 +73,7 @@ class VoyageOrganiseController extends Controller
         if ($files = $request->file("photo")){
             $name="photo".time().Str::random(8).'.'. $files->getClientOriginalExtension();
             $path=$files->storeAs('VoyageOrganise/'.$data->id, $name, 'public');
-            $img = Image::make($files)->resize(350, 240)->encode('jpg',80);
+            $img = Image::make($files)->resize(350, 240)->encode('jpg',100);
             Storage::disk('public')->put( 'VoyageOrganise/'.$data->id."/".$name, $img);
             $data->photo='/storage/'.'VoyageOrganise/'.$data->id."/".$name;
             $data->update();
@@ -194,10 +194,10 @@ class VoyageOrganiseController extends Controller
     {
         return view("VoyageOrganise.showDetail",compact("voyageOrganise"));
     }
-    public function VoyageOrganise()
+    public function VoyageOrganise(Request $request)
     {
         $pays=pays::all();
-        return view("VoyageOrganise.VoyageOrganise",compact("pays"));
+        return view("VoyageOrganise.VoyageOrganise",compact("pays","request"));
     }
     public function GetVoyageOrganise()
     {

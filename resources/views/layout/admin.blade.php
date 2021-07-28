@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/x-icon" href="{{asset("img")}}/favicon.png">
 
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  
   <title>Cygne Bleu</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -225,6 +227,22 @@
                   </p>
                 </a>
               </li> 
+              <li class="nav-item">
+                <a href="{{route("Billet.index")}}" class="nav-link">
+                  <i class="nav-icon fas fa-ticket-alt"></i>
+                  <p>
+                    Billet
+                  </p>
+                </a>
+              </li> 
+              <li class="nav-item">
+                <a href="{{route("Pays.index")}}" class="nav-link">
+                  <i class="nav-icon fas fa-map-marked-alt"></i>
+                  <p>
+                    Pays & Ville
+                  </p>
+                </a>
+              </li>  
           <li class="nav-item">
             <a href="{{route("GeneralSetting.index")}}" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>

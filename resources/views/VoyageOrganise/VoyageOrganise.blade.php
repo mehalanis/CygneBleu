@@ -30,9 +30,10 @@
                                     <div class="col-lg-12">
                                         <div class="single_select">
                                             <select id='pays' onchange="SelectVilles(this.value)">
+                                                {{$is_pays=false}}
                                                 <option data-display="All Country" value="0">All Country</option>
                                                 @foreach ($pays as $item)
-                                                    <option value="{{$item->id}}">{{$item->nom}}</option>
+                                                    <option value="{{$item->id}}" @if($request->pays==$item->id) selected {{$is_pays=true}} @endif>{{$item->nom}}</option>
                                                 @endforeach
                                               </select>
                                         </div>
@@ -103,6 +104,7 @@
 </script>
 <script>
     var page = 1;
+    SelectVilles("{{$request->pays}}","{{$request->ville}}");
     infinteLoadMore();
     $( "#More_Places" ).click(function() {
         infinteLoadMore();

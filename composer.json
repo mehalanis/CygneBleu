@@ -12,6 +12,7 @@
         "intervention/image": "^2.5",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.3",
         "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\pays;
+use App\Models\photos;
+use App\Models\ville;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
+use DataTables;
 class PaysController extends Controller
 {
     /**
@@ -14,9 +17,16 @@ class PaysController extends Controller
      */
     public function index()
     {
-        //
+        return view("Admin.Pays.index");  
     }
-
+    public function datatables()
+    {   
+        return Datatables::of(pays::all())->addColumn('action', function(pays $data) {
+            $btnView='<a href="'.route("Pays.edit",['Pay'=>$data->id]).'" class="btn btn-block btn-primary">View</button>';
+            return "<div class='action-list'>".$btnView."</div>";
+            
+        })->rawColumns(['action'])->toJson(); 
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +34,7 @@ class PaysController extends Controller
      */
     public function create()
     {
-        //
+        return  view("Admin.Pays.create");
     }
 
     /**
@@ -35,7 +45,15 @@ class PaysController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $pays= pays::create([
+            "nom"=> $input["nom"]
+        ]);
+        foreach($request->input("Villes") as $key => $val){
+            ville::create(["pays_id"=>$pays->id,"nom"=>$val]);
+        }
+        
+        return redirect()->route("Pays.index");
     }
 
     /**

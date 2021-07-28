@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\HotelReservationController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\BilletController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,21 +40,26 @@ Route::post('/HotelReservation/New',[HotelReservationController::class,"store"])
 /*  * */
 Route::get("/Pays/GetVillesJSON/",[PaysController::class,"GetVillesJSON"])->name("PaysController.GetVillesJsonURL");
 Route::get("/Pays/GetVillesJSON/{pays}",[PaysController::class,"GetVillesJSON"])->name("PaysController.GetVillesJSON");
+/* */
+Route::get('/Billet/Reservation/{id}',[BilletController::class,"Billet"])->name("BilletController.Billet");
 
-Route::prefix('admin')->group(function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']],function () {
     Route::resources([
         "GeneralSetting" =>GeneralSettingController::class,
         "VoyageOrganise" =>VoyageOrganiseController::class,
         "VoyageOrganiseReservation"=>VoyageOrganiseReservationController::class,
         "Hotel"=>HotelController::class,
         "HotelReservation"=>HotelReservationController::class,
-        "Client"=>ClientController::class
+        "Client"=>ClientController::class,
+        "Pays"=>PaysController::class,
+        "Billet"=>BilletController::class
     ]);
     Route::get("/VoyageOrganise/list/datatables",[VoyageOrganiseController::class,"datatables"])->name("VoyageOrganiseController.datatables");
     Route::get("/VoyageOrganiseReservationController/list/datatables",[VoyageOrganiseReservationController::class,"datatables"])->name("VoyageOrganiseReservationController.datatables");
     Route::get("/Hotel/list/datatables",[HotelController::class,"datatables"])->name("Hotel.datatables");
     Route::get("/HotelReservation/list/datatables",[HotelReservationController::class,"datatables"])->name("HotelReservationController.datatables");
-
+    Route::get("/Pays/list/datatables",[PaysController::class,"datatables"])->name("PaysController.datatables");
+    Route::get("/Billet/list/datatables",[BilletController::class,"datatables"])->name("BilletController.datatables");
 
     Route::get('/index', function () {
         return view('Admin.index');
@@ -63,3 +69,7 @@ Route::prefix('admin')->group(function () {
 Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
+
+Auth::routes();
+
+//Route::get('/home', function () { return view('Admin.index'); })->name('home');

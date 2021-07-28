@@ -83,38 +83,25 @@ General Settings
                 <script>
                     function initMap() {
                         var uluru = {
-                            lat: 36.7867573,
-                            lng: 3.2459046
+                            lat: 36.786916,
+                            lng: 3.245455
                         };
-                        var grayStyles = [{
-                                featureType: "all",
-                                stylers: [{
-                                        saturation: -90
-                                    },
-                                    {
-                                        lightness: 50
-                                    }
-                                ]
-                            },
-                            {
-                                elementType: 'labels.text.fill',
-                                stylers: [{
-                                    color: '#ccdee9'
-                                }]
-                            }
-                        ];
+                        
                         var map = new google.maps.Map(document.getElementById('map'), {
                             center: {
                                 lat: 36.7867573,
                                 lng: 3.2459046
                             },
                             zoom: 18,
-                            styles: grayStyles,
                             scrollwheel: false
                         });
+                        const marker = new google.maps.Marker({
+                            position: uluru,
+                            map: map,
+                          });
                     }
                 </script>
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&amp;callback=initMap">
+                <script src="https://maps.googleapis.com/maps/api/js?key={{env("GOOGLE_MAPS_KEY")}}&amp;callback=initMap">
                 </script>
 
             </div>

@@ -107,6 +107,10 @@ $( function() {
   });
   $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
       " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+
+
+
+  /*    * */
 } );
 
 
@@ -349,3 +353,10 @@ mailChimp();
 
 
 })(jQuery);	
+$(document).on("change","#mode_paiement",function(){
+  if($(this).val()=="0"){
+    $("#paiement_file").attr("disabled","disabled")
+  }else{
+    $("#paiement_file").removeAttr("disabled")
+  }
+})

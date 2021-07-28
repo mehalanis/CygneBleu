@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- <link rel="manifest" href="site.webmanifest"> -->
     <link rel="shortcut icon" type="image/x-icon" href="{{asset("img")}}/favicon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -30,6 +31,8 @@
 
     <link rel="stylesheet" href="{{asset("css")}}/style.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+    <link rel="stylesheet" href="{{asset("Admin")}}/plugins/daterangepicker/daterangepicker.css">
+
     @yield("head")
 </head>
 
@@ -54,7 +57,7 @@
                                             <li><a class="active" href="{{route("index")}}">home</a></li>
                                             <li><a class="" href="{{route("VoyageOrganiseController.VoyageOrganise")}}">Voyage organisé</a></li>
                                             <li><a class="" href="{{route("HotelController.Hotel")}}">Hotel</a></li>
-                                            <li><a href="{{route("Contact")}}">Contact</a></li>
+                                            <!--<li><a href="{{route("Contact")}}">Contact</a></li>-->
                                             <li><a href="{{route("admin.index")}}">Admin</a></li>
                                         </ul>
                                     </nav>
@@ -146,36 +149,13 @@
 
                         </div>
                     </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Company
-                            </h3>
-                            <ul class="links">
-                                <li><a href="#">Pricing</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#"> Gallery</a></li>
-                                <li><a href="#"> Contact</a></li>
-                            </ul>
-                        </div>
+                    
+                    <div class="col-xl-5 col-md-6 col-lg-3">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d798.8291275771497!2d3.245587!3d36.786961!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1cde0cb2af3ef43f!2sAgence%20de%20voyage%20Cygne%20Bleu!5e0!3m2!1sen!2sus!4v1627034368661!5m2!1sen!2sus" 
+                        width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                      
                     </div>
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Popular destination
-                            </h3>
-                            <ul class="links double_links">
-                                <li><a href="#">Indonesia</a></li>
-                                <li><a href="#">America</a></li>
-                                <li><a href="#">India</a></li>
-                                <li><a href="#">Switzerland</a></li>
-                                <li><a href="#">Italy</a></li>
-                                <li><a href="#">Canada</a></li>
-                                <li><a href="#">Franch</a></li>
-                                <li><a href="#">England</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget">
                             <h3 class="footer_title">
@@ -225,7 +205,7 @@
                     <div class="col-xl-12">
                         <p class="copy_right text-center">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>.Downloaded from <a href="https://themeslab.org/" target="_blank">Themeslab</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
 
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
@@ -283,17 +263,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="{{asset("js")}}/jquery.form.js"></script>
     <script src="{{asset("js")}}/jquery.validate.min.js"></script>
     <script src="{{asset("js")}}/mail-script.js"></script>
-
+    <script src="{{asset("Admin")}}/plugins/moment/moment.min.js"></script>
+    <script src="{{asset("Admin")}}/plugins/daterangepicker/daterangepicker.js"></script>
+    
 
     <script src="{{asset("js")}}/main.js"></script>
-    <script>
-        $('#datepicker').datepicker({
-            iconsLibrary: 'fontawesome',
-            icons: {
-             rightIcon: '<span class="fa fa-caret-down"></span>'
-         }
-        });
-    </script>
+   
     @yield("script")
 </body>
 
